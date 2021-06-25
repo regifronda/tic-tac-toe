@@ -1,3 +1,4 @@
+#Controls gameplay
 class TicTacToe
   def initialize
     @board = Board.new
@@ -5,8 +6,29 @@ class TicTacToe
     @player_x = Player.new("Player 1", :x, @board)
     @player_o = Player.new("Player 2", :o, @board)
 
-
+    #Assign starting player
   end
+  #play
+    #loop infinitely
+      #call board rendering method
+      #ask for coordinates from current player
+      #if the game is over, break the loop
+      #switch players
+
+  #check_game_over
+    #check_victory
+    #check_draw
+  
+  #check_victory
+    #if board says current player's piece has winning_combination
+    #print victory message
+    
+  #check_draw
+    #if board is filled up
+      #print draw message
+
+  #switch_players
+    #player_x to player_o or vice versa
 end
 
 class Player

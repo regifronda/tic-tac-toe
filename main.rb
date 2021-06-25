@@ -2,10 +2,21 @@ class TicTacToe
   def initialize
     @board = Board.new
 
+    @player_x = Player.new("Player 1", :x, @board)
+    @player_o = Player.new("Player 2", :o, @board)
+
+
   end
 end
 
 class Player
+  attr_accessor :name, :piece
+
+  def initalize(name = "Player_placeholder", piece, board)
+    @name = name
+    @piece = piece
+    @board = board
+  end
 end
 
 class Board

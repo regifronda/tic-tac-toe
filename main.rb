@@ -8,6 +8,7 @@ class TicTacToe
 
     #Assign starting player
   end
+
   #play
     #loop infinitely
       #call board rendering method
@@ -39,6 +40,21 @@ class Player
     @piece = piece
     @board = board
   end
+
+  #get_coordinates
+    #loop infinitely
+      #ask_for_coordinates
+      #if validate_coordinates_format is true
+        #if piece can be placed on Board
+          #break the loop
+  
+  #ask_for_coordinates
+    #display message asking for coordinates
+    #pull coordinates from command line
+
+  #validate_coordinates_format
+    #unless coordinates are in the proper format
+      #display error message
 end
 
 class Board

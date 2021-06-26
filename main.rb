@@ -138,9 +138,12 @@ class Board
     #or winning_vertical?
     #or winning_horizontal? for that piece?
   
-  #winning_diagonal?
-    #check if there's three of the specified piece across diagonals
-  
+  def winning_diagonal?(piece)
+    diagonals.any? do |diagonal|
+      diagonal.all? { |cell| cell == piece }
+    end
+  end
+
   #winning_vertical?
     #check if there's three of the specified piece across verticals
   

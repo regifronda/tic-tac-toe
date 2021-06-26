@@ -68,17 +68,18 @@ class Player
     end
   end
 
-  #ask_for_coordinates
   def ask_for_coordinates
-    #display message asking for coordinates
     puts "#{@name}(#{@piece}), enter your coordinates in the form x,y:"
-    #pull coordinates from command line
     gets.strip.split(",").map(&:to_i)
   end
 
-  #validate_coordinates_format
-    #unless coordinates are in the proper format
-      #display error message
+  def validate_coordinates_format(coordinates)
+    if coordinates.is_a?(Array) && coordinates.size == 2
+      true
+    else
+      puts "Error: your coordinates aren't in the right format."
+    end
+  end
 end
 
 class Board

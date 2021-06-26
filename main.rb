@@ -149,7 +149,7 @@ class Board
       horizontal.all?{ |cell| cell == piece }
     end
   end
-  
+
   #winning_horizontal
     #check if there's three of the specified piece across
   
@@ -163,9 +163,14 @@ class Board
     @board
   end
 
-  #horizontals
-    #return horizontal pieces
-  
+  def verticals
+    verticals = []
+    3.times do |i|
+      verticals << [@board[0][i], @board[1][i], @board[2][i]]
+    end
+    verticals
+  end
+
   #full?
     #does every square have a piece?
 end

@@ -111,19 +111,20 @@ class Board
     end
   end
 
-  #piece_location_valid?
   def piece_location_valid?(coordinates)
-    #is the input within_valid_coordinates?
     if within_valid_coordinates?(coordinates)
-    #are the piece coordinates_free?
       coordinates_available?(coordinates)
     end
   end
   
-  #within_valid_coordinates?
-    #unless piece coordinates are in the acceptible range
-      #display an error message
-
+  def within_valid_coordinates?(coordinates)
+    if (0..2).include?(coordinates[0]) && (0..2).include?(coordinates[1])
+      true
+    else
+      puts "Piece coordinates are outside of acceptable range."
+    end
+  end
+  
   #coordinates_free?
     #unless piece coordinates are not occupied
       #display error message

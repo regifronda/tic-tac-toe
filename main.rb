@@ -144,8 +144,11 @@ class Board
     end
   end
 
-  #winning_vertical?
-    #check if there's three of the specified piece across verticals
+  def winning_horizontal?(piece)
+    horizontals.any? do |horizontal|
+      horizontal.all?{ |cell| cell == piece }
+    end
+  end
   
   #winning_horizontal
     #check if there's three of the specified piece across
@@ -153,9 +156,13 @@ class Board
   def diagonals
     [[@board[0][0], @board[1][1], @board[2][2]], [@board[2][0], @board[1][1], @board[0][2]]]
   end
-  #verticals
-    #return vertical pieces
   
+  #switch vertical and horizontal methods to make sense!!!!!!!!
+  
+  def horizontals
+    @board
+  end
+
   #horizontals
     #return horizontal pieces
   

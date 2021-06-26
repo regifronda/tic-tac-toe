@@ -102,12 +102,15 @@ class Board
     puts
   end
 
-  #add_piece
-    #if piece_location_valid?
-      #place piece
-    #else
-      #print error message
-    
+  def add_piece(coordinates, piece)
+    if piece_location_valid?(coordinates)
+      @board[coordinates[0]][coordinates[1]] = piece
+      true
+    else
+      false
+    end
+  end
+
   #piece_location_valid?
     #is the input within_valid_coordinates?
     #are the piece coordinates_free?

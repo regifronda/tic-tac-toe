@@ -17,10 +17,9 @@ class TicTacToe
     end
   end
 
-  #check_game_over
-    #check_victory
-    #check_draw
-  
+  def check_game_over
+    check_victory || check_draw
+  end
   #check_victory
     #if board says current player's piece has winning_combination
     #print victory message

@@ -8,12 +8,14 @@ class TicTacToe
     @current_player = player_x
   end
 
-  #play
-    #loop infinitely
-      #call board rendering method
-      #ask for coordinates from current player
-      #if the game is over, break the loop
-      #switch players
+  def play
+    loop do
+      @board.render
+      @current_player.get_coordinates
+      break if check_game_over
+      switch_players
+    end
+  end
 
   #check_game_over
     #check_victory

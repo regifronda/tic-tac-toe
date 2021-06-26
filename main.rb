@@ -89,9 +89,19 @@ class Board
   end
 
   #render 
+  def render
+    puts
     #loop through data structure
+    @board.each do |row|
+      row.each do |cell|
       #display an existing marker if any, else blank
-  
+      cell.nil? ? print("-") : print(cell.to_s)
+      end
+      puts
+    end
+    puts
+  end
+
   #add_piece
     #if piece_location_valid?
       #place piece

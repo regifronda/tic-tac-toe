@@ -124,11 +124,15 @@ class Board
       puts "Piece coordinates are outside of acceptable range."
     end
   end
-  
-  #coordinates_free?
-    #unless piece coordinates are not occupied
-      #display error message
-  
+
+  def coordinates_available?(coordinates)
+    if @board[coordinates[0]][coordinates[1]].nil?
+      true
+    else
+      puts "A piece is already there."
+    end
+  end
+
   #winning_combination
     #is there a winning_diagonal?
     #or winning_vertical?

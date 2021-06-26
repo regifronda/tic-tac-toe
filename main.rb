@@ -84,7 +84,9 @@ end
 
 class Board
   #initialize board
-    #set up blank data structure
+  def initialize
+    @board = Array.new(3){Array.new(3)}
+  end
 
   #render 
     #loop through data structure

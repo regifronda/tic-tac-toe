@@ -30,19 +30,22 @@ class TicTacToe
     end
   end  
 
-  #check_draw
   def check_draw
-    #if board is filled up
     if @board.full?
-      #print draw message
       puts "Too bad, it's a draw!"
       true
     else
       false
     end
   end
-  #switch_players
-    #player_x to player_o or vice versa
+
+  def switch_players
+    if @current_player == @player_x
+      @current_player = @player_y
+    else
+      @current_player = @player_x
+    end
+  end
 end
 
 class Player

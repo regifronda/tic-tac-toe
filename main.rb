@@ -21,21 +21,26 @@ class TicTacToe
     check_victory || check_draw
   end
 
-  #check_victory
   def check_victory
-    #if board says current player's piece has winning_combination
     if @board.winning_combination?(@current_player.piece)
-      #print victory message
-      puts "Congratulations #{@current_player.name}, you win!"
+      puts "Congratulations! You win, #{@current_player.name}!"
       true
     else
       false
     end
   end  
-  #check_draw
-    #if board is filled up
-      #print draw message
 
+  #check_draw
+  def check_draw
+    #if board is filled up
+    if @board.full?
+      #print draw message
+      puts "Too bad, it's a draw!"
+      true
+    else
+      false
+    end
+  end
   #switch_players
     #player_x to player_o or vice versa
 end

@@ -1,4 +1,3 @@
-#Controls gameplay
 class TicTacToe
   def initialize
     @board = Board.new
@@ -6,7 +5,7 @@ class TicTacToe
     @player_x = Player.new("Player 1", :x, @board)
     @player_o = Player.new("Player 2", :o, @board)
 
-    #Assign starting player
+    @current_player = player_x
   end
 
   #play
@@ -109,16 +108,3 @@ class Board
   #full?
     #does every square have a piece?
 end
-
-#Set up the game itself [TicTacToe]by
-  #Initalize the game board [Board]
-  #Initialize two players [Player1 and Player2]
-#Start gameplay loop [TicTacToe]
-  #Display the board [Board]
-  #Ask for player input and check if formatted correctly[PlayerInput]
-  #If there's a draw or win [TicTacToe]
-    #Print victory or draw message
-    #Stop looping
-  #Else
-    #Switch to next player
-    #resume loop [TicTacToe]

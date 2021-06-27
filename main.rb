@@ -5,7 +5,7 @@ class TicTacToe
     @player_x = Player.new("Player 1", :x, @board)
     @player_o = Player.new("Player 2", :o, @board)
 
-    @current_player = player_x
+    @current_player = @player_x
   end
 
   def play
@@ -41,7 +41,7 @@ class TicTacToe
 
   def switch_players
     if @current_player == @player_x
-      @current_player = @player_y
+      @current_player = @player_o
     else
       @current_player = @player_x
     end
@@ -51,7 +51,8 @@ end
 class Player
   attr_accessor :name, :piece
 
-  def initalize(name = "Player_placeholder", piece, board)
+  def initialize(name = "Player_placeholder", piece, board)
+    raise "Piece must be a Symbol!" unless piece.is_a?(Symbol)
     @name = name
     @piece = piece
     @board = board
@@ -83,18 +84,14 @@ class Player
 end
 
 class Board
-  #initialize board
   def initialize
     @board = Array.new(3){Array.new(3)}
   end
 
-  #render 
   def render
     puts
-    #loop through data structure
     @board.each do |row|
       row.each do |cell|
-      #display an existing marker if any, else blank
       cell.nil? ? print("-") : print(cell.to_s)
       end
       puts
@@ -133,11 +130,12 @@ class Board
     end
   end
 
-  #winning_combination
-    #is there a winning_diagonal?
-    #or winning_vertical?
-    #or winning_horizontal? for that piece?
-  
+  def winning_combination?(piece)
+    winning_diagonal?(piece) ||
+    winning_vertical?(piece) ||
+    winning_horizontal?(piece)
+  end
+
   def winning_diagonal?(piece)
     diagonals.any? do |diagonal|
       diagonal.all? { |cell| cell == piece }
@@ -159,9 +157,7 @@ class Board
   def diagonals
     [[@board[0][0], @board[1][1], @board[2][2]], [@board[2][0], @board[1][1], @board[0][2]]]
   end
-  
-  #switch vertical and horizontal methods to make sense!!!!!!!!
-  
+    
   def horizontals
     @board
   end
@@ -174,11 +170,12 @@ class Board
     verticals
   end
 
-  #full?
   def full?
-    #does every square have a piece?
     @board.all? do |row|
       row.none?(&:nil?)
     end
   end
 end
+
+game = TicTacToe.new
+game.play

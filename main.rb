@@ -175,5 +175,10 @@ class Board
   end
 
   #full?
+  def full?
     #does every square have a piece?
+    @board.all? do |row|
+      row.none?(&:nil?)
+    end
+  end
 end

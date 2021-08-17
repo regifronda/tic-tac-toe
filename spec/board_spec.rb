@@ -5,6 +5,37 @@ require './lib/tictactoe'
 describe Board do
   subject(:board) { described_class.new }
 
+  describe "#within_valid_coordinates?" do
+    context "when given a valid input as an argument" do
+      it "returns true" do
+        user_coordinates = [0, 0]
+        valid_coordinates = board.within_valid_coordinates?(user_coordinates)
+        expect(valid_coordinates).to be true
+      end
+    end
+    
+    context "when given an invalid coordinate as an argument" do
+      it "returns false" do
+        user_coordinates = [99, 0]
+        valid_coordinates = board.within_valid_coordinates?(user_coordinates)
+        expect(valid_coordinates).to be false
+      end
+    end
+  end
+
+  describe "#coordinates_available?" do
+    context "when the board is empty" do
+      before do
+        board.instance_variable_set(:@board, [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]])
+      end
+
+      it "returns true" do
+        user_coordinates = [0, 0]
+        availability_check = board.coordinates_available?(user_coordinates)
+        expect(availability_check).to be true
+      end
+    end
+  end
   describe "#winning_diagonal?" do
     context "when the board is empty" do
       before do
@@ -14,7 +45,7 @@ describe Board do
       it "returns false" do
         test_piece = :x
         diagonal_check = board.winning_diagonal?(test_piece)
-        expect(diagonal_check).to be_falsy
+        expect(diagonal_check).to be false
       end
     end
 
@@ -26,7 +57,7 @@ describe Board do
       it "returns false" do
         test_piece = :x
         diagonal_check = board.winning_diagonal?(test_piece)
-        expect(diagonal_check).to be_falsy
+        expect(diagonal_check).to be false
       end
     end
 
@@ -64,7 +95,7 @@ describe Board do
       it "returns false" do
         test_piece = :x
         vertical_check = board.winning_vertical?(test_piece)
-        expect(vertical_check).to be_falsy
+        expect(vertical_check).to be false
       end
     end
 
@@ -76,7 +107,7 @@ describe Board do
       it "returns false" do
         test_piece = :x
         vertical_check = board.winning_vertical?(test_piece)
-        expect(vertical_check).to be_falsy
+        expect(vertical_check).to be false
       end
     end
 
@@ -126,7 +157,7 @@ describe Board do
       it "returns false" do
         test_piece = :x
         horizontal_check = board.winning_horizontal?(test_piece)
-        expect(horizontal_check).to be_falsy
+        expect(horizontal_check).to be false
       end
     end
 
@@ -138,7 +169,7 @@ describe Board do
       it "returns false" do
         test_piece = :x
         horizontal_check = board.winning_horizontal?(test_piece)
-        expect(horizontal_check).to be_falsy
+        expect(horizontal_check).to be false
       end
     end
 

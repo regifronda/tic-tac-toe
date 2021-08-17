@@ -4,10 +4,54 @@ require './lib/tictactoe'
 
 describe Board do
   subject(:board) { described_class.new }
-  
+
   describe "#winning_diagonal?" do
     context "when the board is empty" do
+      before do
+        board.instance_variable_set(:@board, [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]])
+      end
+
+      it "returns false" do
+        test_piece = :x
+        diagonal_check = board.winning_diagonal?(test_piece)
+        expect(diagonal_check).to be_falsy
+      end
+    end
+
+    context "when 2 of 3 diagonal squares have the same piece" do
+      before do
+        board.instance_variable_set(:@board, [[:x, nil, nil], [nil, :x, nil], [nil, nil, nil]])
+      end
       
+      it "returns false" do
+        test_piece = :x
+        diagonal_check = board.winning_diagonal?(test_piece)
+        expect(diagonal_check).to be_falsy
+      end
+    end
+
+    context "when top left, center, and bottom right squares have the same piece" do
+      before do
+        board.instance_variable_set(:@board, [[:x, nil, nil], [nil, :x, nil], [nil, nil, :x]])
+      end
+      
+      it "returns true" do
+        test_piece = :x
+        diagonal_check = board.winning_diagonal?(test_piece)
+        expect(diagonal_check).to be true
+      end
+    end
+
+    context "when top right, center, and bottom left squares have the same piece" do
+      before do
+        board.instance_variable_set(:@board, [[nil, nil, :x], [nil, :x, nil], [:x, nil, nil]])
+      end
+      
+      it "returns true" do
+        test_piece = :x
+        diagonal_check = board.winning_diagonal?(test_piece)
+        expect(diagonal_check).to be true
+      end
     end
   end
 

@@ -29,6 +29,7 @@ class Player
       true
     else
       puts "Error: your coordinates aren't in the right format."
+      false
     end
   end
 end

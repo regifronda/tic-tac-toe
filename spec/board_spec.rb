@@ -285,7 +285,7 @@ describe Board do
         board.instance_variable_set(:@board, [[:x, :o, :x], [:x, :x, :o], [:o, :o, :x]])
       end
 
-      it "is is full" do
+      it "is full" do
         expect(board).to be_full
       end
     end

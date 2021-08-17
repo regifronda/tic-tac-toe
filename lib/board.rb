@@ -34,6 +34,7 @@ class Board
       true
     else
       puts "Piece coordinates are outside of acceptable range."
+      false
     end
   end
 
@@ -42,6 +43,7 @@ class Board
       true
     else
       puts "A piece is already there."
+      false
     end
   end
 

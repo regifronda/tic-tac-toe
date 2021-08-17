@@ -6,14 +6,6 @@ describe Board do
   subject(:board) { described_class.new }
 
   describe "#within_valid_coordinates?" do
-    context "when given a valid input as an argument" do
-      it "returns true" do
-        user_coordinates = [0, 0]
-        valid_coordinates = board.within_valid_coordinates?(user_coordinates)
-        expect(valid_coordinates).to be true
-      end
-    end
-    
     context "when given an invalid coordinate as an argument" do
       it "returns false" do
         user_coordinates = [99, 0]
@@ -21,10 +13,18 @@ describe Board do
         expect(valid_coordinates).to be false
       end
     end
+    
+    context "when given a valid input as an argument" do
+      it "returns true" do
+        user_coordinates = [0, 0]
+        valid_coordinates = board.within_valid_coordinates?(user_coordinates)
+        expect(valid_coordinates).to be true
+      end
+    end
   end
 
   describe "#coordinates_available?" do
-    context "when the board is empty" do
+    context "when given a coordinate for an empty space and the board is empty" do
       before do
         board.instance_variable_set(:@board, [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]])
       end
@@ -35,7 +35,56 @@ describe Board do
         expect(availability_check).to be true
       end
     end
+
+    context "when given a coordinate for an occupied space and the board is partially filled" do
+      before do
+        board.instance_variable_set(:@board, [[nil, :x, :o], [nil, nil, nil], [nil, :o, :x]])
+      end
+
+      it "returns false" do
+        user_coordinates = [0, 1]
+        availability_check = board.coordinates_available?(user_coordinates)
+        expect(availability_check).to be false
+      end
+    end
+
+    context "when given a coordinate for an empty space and the board is partially filled" do
+      before do
+        board.instance_variable_set(:@board, [[nil, :x, :o], [nil, nil, nil], [nil, :o, :x]])
+      end
+
+      it "returns true" do
+        user_coordinates = [0, 0]
+        availability_check = board.coordinates_available?(user_coordinates)
+        expect(availability_check).to be true
+      end
+    end
+
+    context "when given a coordinate for an occupied space and the board is nearly full" do
+      before do
+        board.instance_variable_set(:@board, [[nil, :o, :x], [:x, :x, :o], [:o, :o, :x]])
+      end
+
+      it "returns false" do
+        user_coordinates = [1, 1]
+        availability_check = board.coordinates_available?(user_coordinates)
+        expect(availability_check).to be false
+      end
+    end
+    
+    context "when given a coordinate for an empty space and the board is nearly full" do
+      before do
+        board.instance_variable_set(:@board, [[nil, :o, :x], [:x, :x, :o], [:o, :o, :x]])
+      end
+
+      it "returns true" do
+        user_coordinates = [0, 0]
+        availability_check = board.coordinates_available?(user_coordinates)
+        expect(availability_check).to be true
+      end
+    end
   end
+
   describe "#winning_diagonal?" do
     context "when the board is empty" do
       before do

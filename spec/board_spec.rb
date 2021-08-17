@@ -5,8 +5,13 @@ require './lib/tictactoe'
 describe Board do
   subject(:board) { described_class.new }
   
+  describe "#winning_diagonal?" do
+    context "when the board is empty" do
+      
+    end
+  end
+
   describe "#winning_vertical?" do
-    
     context "when the board is empty" do
       before do
         board.instance_variable_set(:@board, [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]])
@@ -67,6 +72,69 @@ describe Board do
       end
     end
   end
+
+  describe "#winning_horizontal?" do
+    context "when the board is empty" do
+      before do
+        board.instance_variable_set(:@board, [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]])
+      end
+      
+      it "returns false" do
+        test_piece = :x
+        horizontal_check = board.winning_horizontal?(test_piece)
+        expect(horizontal_check).to be_falsy
+      end
+    end
+
+    context "when 2 of 3 horizontal squares have the same piece" do
+      before do
+        board.instance_variable_set(:@board, [[:x, :x, nil], [nil, nil, nil], [nil, nil, nil]])
+      end
+      
+      it "returns false" do
+        test_piece = :x
+        horizontal_check = board.winning_horizontal?(test_piece)
+        expect(horizontal_check).to be_falsy
+      end
+    end
+
+    context "when the top row has the same piece" do
+      before do
+        board.instance_variable_set(:@board, [[:x, :x, :x], [nil, nil, nil], [nil, nil, nil]])
+      end
+      
+      it "returns true" do
+        test_piece = :x
+        horizontal_check = board.winning_horizontal?(test_piece)
+        expect(horizontal_check).to be_truthy
+      end
+    end
+
+    context "when the middle row has the same piece" do
+      before do
+        board.instance_variable_set(:@board, [[nil, nil, nil], [:x, :x, :x], [nil, nil, nil]])
+      end
+      
+      it "returns true" do
+        test_piece = :x
+        horizontal_check = board.winning_horizontal?(test_piece)
+        expect(horizontal_check).to be_truthy
+      end
+    end
+
+    context "when the bottom row has the same piece" do
+      before do
+        board.instance_variable_set(:@board, [[nil, nil, nil], [nil, nil, nil], [:x, :x, :x]])
+      end
+      
+      it "returns true" do
+        test_piece = :x
+        horizontal_check = board.winning_horizontal?(test_piece)
+        expect(horizontal_check).to be_truthy
+      end
+    end
+  end
+
   describe "#full?" do
     context "when board is empty" do
       before do

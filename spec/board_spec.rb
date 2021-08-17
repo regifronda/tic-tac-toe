@@ -6,19 +6,19 @@ describe Board do
   subject(:board) { described_class.new }
 
   describe "#within_valid_coordinates?" do
-    context "when given an invalid coordinate as an argument" do
-      it "returns false" do
-        user_coordinates = [99, 0]
-        valid_coordinates = board.within_valid_coordinates?(user_coordinates)
-        expect(valid_coordinates).to be false
-      end
-    end
-    
     context "when given a valid input as an argument" do
       it "returns true" do
         user_coordinates = [0, 0]
         valid_coordinates = board.within_valid_coordinates?(user_coordinates)
         expect(valid_coordinates).to be true
+      end
+    end
+    
+    context "when given an invalid coordinate as an argument" do
+      it "returns false" do
+        user_coordinates = [99, 0]
+        valid_coordinates = board.within_valid_coordinates?(user_coordinates)
+        expect(valid_coordinates).to be false
       end
     end
   end

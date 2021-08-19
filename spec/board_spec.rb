@@ -230,7 +230,7 @@ describe Board do
       it "returns true" do
         test_piece = :x
         horizontal_check = board.winning_horizontal?(test_piece)
-        expect(horizontal_check).to be_truthy
+        expect(horizontal_check).to be true
       end
     end
 
